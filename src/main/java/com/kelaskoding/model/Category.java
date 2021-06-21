@@ -7,11 +7,13 @@ package com.kelaskoding.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author jarvis
  */
+@XmlRootElement
 public class Category {
     private Long id;
     private String name;

@@ -5,10 +5,13 @@
  */
 package com.kelaskoding.model;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  *
  * @author jarvis
  */
+@XmlRootElement
 public class Item {
     private Long id;
     private String name;
