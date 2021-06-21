@@ -105,6 +105,36 @@ public class ItemRepo {
         }
     }
     
+    public List<Item> findByCategoryId(Long id){
+        String sql = "select id, name, price from tbl_products where category_id=?";
+        List<Item> items = new ArrayList<>();
+        PreparedStatement pst = null;
+        try{
+            pst = this.conn.prepareStatement(sql);
+            pst.setLong(1, id);
+            ResultSet rs = pst.executeQuery();
+            while(rs.next()){
+                Item item = new Item();
+                item.setId(rs.getLong("id"));
+                item.setName(rs.getString("name"));
+                item.setPrice(rs.getDouble("price"));
+                items.add(item);
+            }
+            return items;
+        }catch(Exception ex){
+            ex.printStackTrace();
+            return items;
+        }finally{
+            if(pst!=null){
+                try{
+                    pst.close();
+                }catch(SQLException ex){
+                    ex.printStackTrace();
+                }
+            }
+        }
+    }
+    
     public int removeById(Long id){
         String sql = "delete from tbl_products where id=?";
         PreparedStatement pst = null;

@@ -1,5 +1,8 @@
 /Users/jarvis/NetBeansProjects/demo-db/src/main/java/com/kelaskoding/model/Item.java
 /Users/jarvis/NetBeansProjects/demo-db/src/main/java/com/kelaskoding/resource/ApplicationConfig.java
+/Users/jarvis/NetBeansProjects/demo-db/src/main/java/com/kelaskoding/resource/CategoryResource.java
 /Users/jarvis/NetBeansProjects/demo-db/src/main/java/com/kelaskoding/datasource/MyDataSource.java
 /Users/jarvis/NetBeansProjects/demo-db/src/main/java/com/kelaskoding/repo/ItemRepo.java
+/Users/jarvis/NetBeansProjects/demo-db/src/main/java/com/kelaskoding/repo/CategoryRepo.java
+/Users/jarvis/NetBeansProjects/demo-db/src/main/java/com/kelaskoding/model/Category.java
 /Users/jarvis/NetBeansProjects/demo-db/src/main/java/com/kelaskoding/resource/ItemResource.java
