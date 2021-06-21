@@ -1,0 +1,5 @@
+com/kelaskoding/datasource/MyDataSource.class
+com/kelaskoding/resource/ItemResource.class
+com/kelaskoding/model/Item.class
+com/kelaskoding/repo/ItemRepo.class
+com/kelaskoding/resource/ApplicationConfig.class
