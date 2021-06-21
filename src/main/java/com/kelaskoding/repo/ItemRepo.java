@@ -75,4 +75,54 @@ public class ItemRepo {
             }
         }
     }
+    
+    public Item findById(Long id){
+        String sql = "select id, name, price from tbl_products where id=?";
+        Item item = null;
+        PreparedStatement pst = null;
+        try{
+            pst = this.conn.prepareStatement(sql);
+            pst.setLong(1, id);
+            ResultSet rs = pst.executeQuery();
+            if(rs.next()){
+                item = new Item();
+                item.setId(rs.getLong("id"));
+                item.setName(rs.getString("name"));
+                item.setPrice(rs.getDouble("price"));
+            }
+            return item;
+        }catch(Exception ex){
+            ex.printStackTrace();
+            return item;
+        }finally{
+            if(pst!=null){
+                try{
+                    pst.close();
+                }catch(SQLException ex){
+                    ex.printStackTrace();
+                }
+            }
+        }
+    }
+    
+    public int removeById(Long id){
+        String sql = "delete from tbl_products where id=?";
+        PreparedStatement pst = null;
+        try{
+            pst = this.conn.prepareStatement(sql);
+            pst.setLong(1, id);
+            return pst.executeUpdate();
+        }catch(Exception ex){
+            ex.printStackTrace();
+            return 0;
+        }finally{
+            if(pst!=null){
+                try{
+                    pst.close();
+                }catch(SQLException ex){
+                    ex.printStackTrace();
+                }
+            }
+        }
+    }
 }
