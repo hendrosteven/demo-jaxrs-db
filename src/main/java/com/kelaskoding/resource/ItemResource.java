@@ -11,14 +11,19 @@ import com.kelaskoding.repo.ItemRepo;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.container.AsyncResponse;
+import javax.ws.rs.container.Suspended;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
 
 /**
  *
@@ -28,6 +33,8 @@ import javax.ws.rs.core.Response;
 public class ItemResource {
     
     private ItemRepo repo;
+    
+    private static ExecutorService executor = Executors.newFixedThreadPool(10);
     
     public ItemResource(){
         try{
@@ -51,6 +58,16 @@ public class ItemResource {
     @Produces(MediaType.APPLICATION_JSON)
     public List<Item> findAll(){
         return repo.findAll();
+    }
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/async")
+    public void asynFindAll(@Suspended final AsyncResponse response){
+        executor.execute(()->{
+            List<Item> items = repo.findAll();
+            response.resume(items);
+        });
     }
     
     @GET
